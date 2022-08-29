@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164">
+  <g id="Icon" transform="translate(163.446 0.554) rotate(90)">
+    <rect id="Area" width="164" height="164" transform="translate(-0.554 -0.554)" fill="#fcfcfc" opacity="0"/>
+    <g id="Icon-2" data-name="Icon" transform="translate(0.126 0.126)">
+      <path id="_6476e5e1-3b84-4e4e-a9cd-562081a87147" data-name="6476e5e1-3b84-4e4e-a9cd-562081a87147" d="M0,0H164V164H0Z" transform="translate(-0.68 -0.68)" fill="none"/>
+      <path id="_705adb78-5d0f-4ba8-9817-98304779be28" data-name="705adb78-5d0f-4ba8-9817-98304779be28" d="M102.5,132.833a23.527,23.527,0,0,1-23.5-23.5V54.667a17.5,17.5,0,0,0-35,0v41a3,3,0,0,1-6,0v-41a23.5,23.5,0,0,1,47,0v54.666a17.5,17.5,0,0,0,35,0V49.845a3,3,0,0,1,6,0v59.488A23.527,23.527,0,0,1,102.5,132.833Z" transform="translate(-0.68 -0.68)" fill="#ff7e31"/>
+      <path id="_38117424-a7b9-4a03-b0ca-4512113f5e18" data-name="38117424-a7b9-4a03-b0ca-4512113f5e18" d="M41,92.667a16.685,16.685,0,0,1,16.667,16.666v20.5a16.667,16.667,0,1,1-33.334,0v-20.5A16.685,16.685,0,0,1,41,92.667ZM41,140.5a10.679,10.679,0,0,0,10.667-10.667v-20.5a10.667,10.667,0,0,0-21.334,0v20.5A10.679,10.679,0,0,0,41,140.5Z" transform="translate(-0.68 -0.68)" fill="#ff7e31"/>
+      <path id="Ellipse_2" data-name="Ellipse 2" d="M16,6A10,10,0,1,0,26,16,10.011,10.011,0,0,0,16,6m0-6A16,16,0,1,1,0,16,16,16,0,0,1,16,0Z" transform="translate(106.32 19.32)" fill="#ff7e31"/>
+    </g>
+  </g>
+</svg>

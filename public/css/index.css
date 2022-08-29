@@ -1,0 +1,78 @@
+:root {
+    --main-color:orange;
+    --main2-color:#ff7e31;
+    --bg-cards:#192c40;
+    --bg-section:#1d3249;
+}
+.general-color {
+    color: var(--main2-color);
+}
+.general-bg {
+    background-color: var(--main2-color);
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Home */
+
+.landing {
+    width: 100%;
+    height:100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    z-index: -1;
+}
+.landing > video {
+    object-fit: cover;
+}
+.carousel2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100%;
+    text-align: center;
+}
+.card-bg {
+  background-color: var(--bg-cards)
+}
+.home-cards {
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.home-cards:hover {
+    cursor: pointer;
+    box-shadow: 0 0.5rem 1rem var(--main2-color) !important;
+    transform:  perspective(500px) translateZ(30px);
+    -webkit-transform:  perspective(500px) translateZ(30px);
+    -moz-transform:  perspective(500px) translateZ(30px);
+    -ms-transform:  perspective(500px) translateZ(30px);
+    -o-transform:  perspective(500px) translateZ(30px);
+}
+
+.section-bg {
+   background-color: var(--bg-section)   
+}
+.logo {
+    width: 20%;
+    height: 20%;
+}
+
+/* Home */

@@ -4,7 +4,7 @@
   <div class="container">
     <!-- Navbar brand -->
     <a class="navbar-brand me-2" href="/">
-      <i class="fa-solid fa-bag-shopping" style="color: #5897fb"></i>
+      <i class="fa-solid fa-bag-shopping general-color"></i>
     </a>
 
     <!-- Toggle button -->
@@ -17,7 +17,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <i class="fas fa-bars"></i>
+      <i class="fas fa-bars general-color"></i>
     </button>
 
     <!-- Collapsible wrapper -->
@@ -25,19 +25,19 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/">Online Shopping</a>
+          <a class="nav-link text-warning" href="/">Online Shopping</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold" href="/">Home</a>
+          <a class="nav-link fw-bold text-warning" href="/">Home</a>
         </li>
         <% if(admin) { %>
         <li class="nav-item">
-          <a class="nav-link fw-bold" href="/products/create"
+          <a class="nav-link fw-bold text-warning" href="/products/create"
             >Create Product</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold" href="/products/admin/get"
+          <a class="nav-link fw-bold text-warning" href="/products/admin/get"
             >My Product</a
           >
         </li>
@@ -50,7 +50,7 @@
         <a href="/profile/<%= admin._id %>">
           <button
             type="button"
-            class="btn btn-link px-3 me-2"
+            class="btn btn-link px-3 me-2 text-warning"
             data-mdb-toggle="tooltip"
             data-mdb-html="true"
             title="<em>Hi</em> <u><%= admin.name %></u>"
@@ -61,8 +61,7 @@
         <form action="/logout">
           <button
             type="submit"
-            class="btn me-3 text-white"
-            style="background-color: #5897fb"
+            class="btn me-3 text-white bg-warning"
           >
             logOut
           </button>
@@ -72,7 +71,7 @@
       <!-- Left links -->
       <div class="d-flex align-items-center">
         <a href="/login"
-          ><button type="button" class="btn btn-link px-3 me-2">
+          ><button type="button" class="btn btn-link text-warning px-3 me-2">
             Login
           </button></a
         >

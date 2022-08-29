@@ -3,10 +3,16 @@
 <!-- navbar -->
 <%- include('../../layouts/Nav.ejs') %>
 <!-- carsouel -->
-<%- include('../../../components/Admin/Home/carousel.ejs') %>
-<div class="container my-5">
-<!-- cards -->
-<%- include('../../../components/Admin/Home/cards.ejs') %>
-</div>
+<%- include('../../../components/Admin/Home/landing.ejs') %> <%-
+include('../../../components/Admin/Home/carousel2.ejs') %>
+
+<section class="w-100 py-5 section-bg  flex-column">
+  <div class="container my-5">
+    <h1 class="general-color">What We do</h1>
+    <h4 class="text-light">We provide advanced software solutions, to manage products on our website.</h4>
+    <!-- cards -->
+    <%- include('../../../components/Admin/Home/cards.ejs') %>
+  </div>
+</section>
 <!-- footer -->
 <%- include('../../layouts/Footer.ejs') %>
