@@ -1,0 +1,93 @@
+<form class="border p-5 rounded" action="/product/update/<%= product._id %>"  method="post">
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+    <h1 class="text-center"> update</h1>
+  <div class="col">
+    <!-- name input -->
+    <div class="form-outline-dark">
+      <input type="text" id="form6Example2" class="form-control" name="name"  value="<%= product.name %>" />
+      <label class="form-label" for="form6Example2">Product name</label>
+    </div>
+    <!-- img input -->
+  <!-- <div class="form-outline-dark mb-4">
+    <input type="file" id="form6Example6" class="form-control" name="img"/>
+    <label class="form-label" for="form6Example6">Product Image </label>
+  </div> -->
+  <!-- category input -->
+    <!-- <div class="form-outline-dark mb-4">
+  <label for="category">Choose a Category:</label>
+    <select id="category" name="category"  style="width: 40%; height:30px;">
+    <option value="watches">Watches</option>
+    <option value="laptops">Laptops</option>
+    <option value="mobiles">Mobiles Phone</option>
+   </select>
+</div> -->
+  <!-- brand input -->
+  <div class="form-outline-dark mb-4">
+    <input type="text" id="form6Example3" class="form-control" name="brand"  value="<%= product.brand %>"/>
+    <label class="form-label" for="form6Example3">brand</label>
+  </div>
+  <!-- price input -->
+  <div class="form-outline-dark mb-4">
+    <input type="number" id="form6Example4" class="form-control" name="price"  value="<%= product.price %>"/>
+    <label class="form-label" for="form6Example4">price</label>
+  </div>
+
+   <!-- offer input -->
+  <div class="form-outline-dark mb-4">
+    <input type="text" id="form6Example4" class="form-control" name="offer"  value="<%= product.offer %>"/>
+    <label class="form-label" for="form6Example4">offer</label>
+  </div>
+
+<!-- type input -->
+  <!-- <div class="form-outline-dark mb-4">
+    <label for="type">type:</label>
+    <select id="type" name="type"  style="width: 40%; height:30px;">
+    <option value="feature">Features</option>
+    <option value="popular">Populars</option>
+    <option value="new">New</option>
+   </select>
+  </div> -->
+<!-- state input -->
+  <!-- <div class="form-outline-dark mb-4">
+    <label for="state">state:</label>
+    <select id="state" name="state"  style="width: 40%; height:30px;">
+    <option value="hot">Hot</option>
+    <option value="best-sell">Best Sell</option>
+    <option value="new">New</option>
+   </select>
+  </div> -->
+
+ 
+   <!-- arrivalTime input -->
+  <div class="form-outline-dark mb-4">
+    <input type="text" id="form6Example4" class="form-control" name="arrivalTime" value="<%= product.arrivalTime %>" />
+    <label class="form-label" for="form6Example4">arrival time</label>
+  </div>
+
+
+
+   <!-- location input -->
+  <div class="form-outline-dark mb-4">
+   <input type="text" id="form6Example4" class="form-control" name="location"  value="<%= product.location %>"/>
+    <label class="form-label" for="form6Example4">location</label>
+  </div>
+   
+       <!-- sellingPort input -->
+   <!-- <div class="form-outline-dark mb-4">
+    <label for="sellingPort">selling Port:</label>
+    <select id="sellingPort" name="sellingPort" style="width: 40%; height:30px;">
+    <option value="cairo">cairo</option>
+    <option value="giza">giza</option>
+    <option value="Kafrelshekh">Kafr El-shekh</option>
+    </select>
+  </div> -->
+
+
+  <!-- description input -->
+  <div class="form-outline-dark mb-4">
+    <textarea type="text" id="form6Example6" class="form-control" cols="80" rows="10"name="description"><%= product.description %></textarea>
+    <label class="form-label" for="form6Example6">description</label>
+  </div>
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4 text-light" style="background-color: #ff7e31">update</button>
+</form>
