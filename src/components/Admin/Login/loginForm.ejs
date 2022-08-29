@@ -1,5 +1,5 @@
 <form class="border p-5 rounded" action="/login" method="post">
-  <h1 class="text-center">Login As Admin </h1>
+  <h1 class="text-center">Login as admin </h1>
   <p class="text-danger fw-bold d-block"><%= errors.message %></p>
   <!-- Email input -->
   <div class="form-outline-dark mb-4">
@@ -10,7 +10,6 @@
       name="email"
       placeholder="Write Email"
     />
-    <label class="form-label" for="form1Example1">Email address</label>
   </div>
   <!-- Password input -->
   <div class="form-outline-dark mb-4">
@@ -21,12 +20,7 @@
       name="password"
       placeholder="Password"
     />
-    <label class="form-label" for="form1Example2">Password</label>
-  </div>
-  <div class="col">
-    <!-- Simple link -->
-    <a href="#!">Forgot password?</a>
   </div>
   <!-- Submit button -->
-  <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+  <button type="submit" class="btn btn-block text-light" style="background-color: #ff7e31">Sign in</button>
 </form>

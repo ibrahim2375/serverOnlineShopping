@@ -1,29 +1,47 @@
-<div
-  class="products d-flex justify-content-center align-items-center flex-wrap"
-  style="gap: 30px"
->
-  <% products.forEach(product => { %>
 
-  <div class="card" style="width: 18rem">
-    <!-- <img
-      src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp"
-      class="card-img-top"
-      alt="Chicago Skyscrapers"
-    /> -->
-    <div class="card-body">
-      <h5 class="card-title"><%= product.name %></h5>
-      <p class="card-text"><%= product.description %></p>
+<div class="container " style="display: flex;flex-direction: column;gap: 20px"> 
+  <!-- container -->
+  <!-- search -->
+  <form action="/products/admin/get" method="post" novalidate >
+    <div class="input-group">
+      <div class="form-outline">
+      <input id="search-input" type="search" id="form1" class="form-control" placeholder="name or brand or type"  name="search" />
     </div>
-    <ul class="list-group list-group-light list-group-small">
-      <li class="list-group-item px-4"><%= product.price %>$</li>
-      <li class="list-group-item px-4"><%= product.type %></li>
-      <li class="list-group-item px-4"><%= product.views %></li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+    <button id="search-button" type="submit" class="btn text-light" style="background-color: #ff7e31">
+      <i class="fas fa-search"></i>
+    </button>
   </div>
-
-  <% }) %>
+</form>
+  <!-- search -->
+  <table class="table align-middle border border-2"  style="font-size: small">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Views</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(function(product, index) { %>
+        <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.views %></td>
+        <td>
+            <a href="/product/update/<%=product._id%>" class="btn text-light" style="background-color: #ff7e31">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+             <a href="/product/delete/<%=product._id%>" class="btn text-light" style="background-color: #ff7e31">
+              <i class="fa-regular fa-trash-can"></i>
+            </a>
+        </td>
+    </tr>
+     <% }) %>
+      </tr>
+    </tbody>
+  </table>
+  <!-- container -->
 </div>
