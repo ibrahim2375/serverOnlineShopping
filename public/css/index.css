@@ -10,6 +10,11 @@
 .general-bg {
     background-color: var(--main2-color);
 }
+.form-control:focus {
+    box-shadow: none;
+    border-color: var(--main2-color);
+    outline: 0 none;
+}
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -66,7 +71,6 @@
     -ms-transform:  perspective(500px) translateZ(30px);
     -o-transform:  perspective(500px) translateZ(30px);
 }
-
 .section-bg {
    background-color: var(--bg-section)   
 }
