@@ -10,7 +10,7 @@ router.use('/create', require('./Admin/auth/create'));//finished
 
 router.use('/products/create', require('./Admin/createProduct'));//finished
 router.use('/products/admin/get', require('./Admin/adminProducts'));//finished
-// router.use('/products/get', require('./Admin/getProducts'));
+router.use('/product/delete', require('./Admin/deleteProduct'));
 //////////////////////////////// Admin //////////////////////////////////
 
 
