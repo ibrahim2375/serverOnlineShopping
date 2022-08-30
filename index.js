@@ -13,7 +13,7 @@ const connect_to_db = require('./config/DB');
 ///uses
 app.use(cors({
     origin: ['http://localhost:3000'],
-    method: ['GET', 'Post'],
+    method: ['GET', 'POST'],
     credentials: true, //to allow to cookies take session data
 }));
 app.use(session({
@@ -22,9 +22,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 600000
+        expires: 60000000
     }
 }));
+
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
