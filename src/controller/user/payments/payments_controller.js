@@ -1,12 +1,12 @@
 const Purchase = require('../../../../models/purchase');
 const Stripe = require('stripe')(process.env.S_K);
-const { v4: uuidv4 } = require('uuid');
+const { v8: uuidv8 } = require('uuid');
 const createError = require('../../../errors/errorHandle');
 const methods = {
     async paymentMethod(req, res, next) {
         try {
             const { totalPrice, token, basketItems } = req.body;
-            PaymentKey = uuidv4();
+            PaymentKey = uuidv8();
             Stripe.customers
                 .create({
                     email: token.email,
