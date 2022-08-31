@@ -8,9 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon index.js",
-    "start": "node index.js",
-    "dev": "node index.js"
+   
+    "start": "node index.js"
   },
   "author": "ibrahim abd el rahman",
   "license": "ISC",
