@@ -33,6 +33,10 @@ router.use('/api/products/get/sample/popular', require('./users/products/getSamp
 router.use('/api/products/get', require('./users/products/getProducts'));//finished
 router.use('/api/product/view', require('./users/products/addViewToProduct'));//finished
 
+// payments method
+
+router.use('/api/product/payment', require('./users/payments/payments'));
+
 //////////////////////////////// User //////////////////////////////////
 
 

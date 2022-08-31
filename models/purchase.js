@@ -30,7 +30,6 @@ const purchaseSchema = new mongoose.Schema({
     },
     paidMethod:{
         type: String,
-        required: true,
     }   
 }, { timestamps: true });
 
