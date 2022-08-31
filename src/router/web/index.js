@@ -12,6 +12,9 @@ router.use('/products/create', require('./Admin/createProduct'));//finished
 router.use('/products/admin/get', require('./Admin/adminProducts'));//finished
 router.use('/product/update', require('./Admin/updateProduct'));//finished
 router.use('/product/delete', require('./Admin/deleteProduct'));//finished
+
+
+router.use('/products/get', require('./Admin/getProduct'));//finished
 //////////////////////////////// Admin //////////////////////////////////
 
 

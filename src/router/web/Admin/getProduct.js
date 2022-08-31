@@ -1,3 +1,13 @@
+const Product = require('../../../../models/Product');
+const express = require('express');
+const router = express.Router();
+const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
+router.get('/', authenticateAdmin, async (req, res) => {
+    const products = await Product.find();
+    res.status(200).json(products);
+})
+module.exports = router;
+
 // const Product = require('../../../../models/Product');
 // const express = require('express');
 // const router = express.Router();
