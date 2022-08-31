@@ -5,6 +5,13 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 require('dotenv').config();
+
+
+//server variables
+var port = process.env.PORT || 5000;
+var host = process.env.SERVER_HOST || 'localhost';
+
+
 const app = express();
 //router
 const router = require('./src/router/index');
@@ -38,9 +45,6 @@ app.set('view engine', 'ejs');
 //router
 app.use('/', router);
 
-//server variables
-const port = process.env.PORT || 5000;
-const host = process.env.SERVER_HOST || 'localhost';
 //handel errors
 app.use((err, req, res, next) => {
     const status = err.status || 500;
