@@ -3,15 +3,26 @@ const createError = require('../../../errors/errorHandle');
 const methods = {
     async getProducts(req, res, next) {
         try {
-            //get my  Product
-            await Product.aggregate([{ $sample: { size: 300 } }]).then((result) => {
-                if (!result) {
-                    res.status(200).send('there is no orders');
-                }
-                res.status(200).send(result);
-            }).catch((err) => {
-                next(createError(err.status, err.message));
-            });
+            const query = req.query.category;
+            if (!query) {
+                await Product.aggregate([{ $sample: { size: 300 } }]).then((result) => {
+                    if (!result) {
+                        res.status(200).send('there is no products');
+                    }
+                    res.status(200).send(result);
+                }).catch((err) => {
+                    next(createError(err.status, err.message));
+                });
+            } else {
+                await Product.find({ category: query }).then((result) => {
+                    if (!result) {
+                        res.status(200).send('there is no products');
+                    }
+                    res.status(200).send(result);
+                }).catch((err) => {
+                    next(createError(err.status, err.message));
+                });
+            }
 
         } catch (error) {
             next(createError(error.status, error.message));

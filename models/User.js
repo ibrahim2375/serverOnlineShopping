@@ -29,10 +29,10 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     purchases: {
-        type: [String],
+        type: Array,
     },
     favorites: {
-        type: [String],
+        type: Array,
     },
     card: {
         type: String,

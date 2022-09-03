@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema({
         default: 0,
     },
     reviews: {
-        type: [Number],
+        type: Array,
         default: 0,
     },
     price: {
@@ -41,10 +41,10 @@ const productSchema = new mongoose.Schema({
         type: String,
     },
     avilableColors: {
-        type: [String],
+        type: Array,
     },
     avilableSizes: {
-        type: [String],
+        type: Array,
     },
     offer: {
         type: String,

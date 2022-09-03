@@ -35,6 +35,7 @@ router.use('/api/products/get/sample/feature', require('./users/products/getSamp
 router.use('/api/products/get/sample/popular', require('./users/products/getSampleProductsPopular'));//finished
 router.use('/api/products/get', require('./users/products/getProducts'));//finished
 router.use('/api/product/view', require('./users/products/addViewToProduct'));//finished
+router.use('/api/product/get', require('./users/products/getProduct'));//finished
 
 // payments method
 
