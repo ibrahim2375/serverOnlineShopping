@@ -37,15 +37,14 @@ router.use('/api/products/get', require('./users/products/getProducts'));//finis
 router.use('/api/product/view', require('./users/products/addViewToProduct'));//finished
 router.use('/api/product/get', require('./users/products/getProduct'));//finished
 
+//read imgs from AWS_BUCKET
+router.use('/api/img', require('./users/products/getProductImg'));//finished
+
 // payments method
 
-router.use('/api/product/payment', require('./users/payments/payments'));
+router.use('/api/product/payment', require('./users/payments/payments'));//finished
 
 //////////////////////////////// User //////////////////////////////////
-
-
-
-
 
 //////////////////////////////// 404 //////////////////////////////////
 router.use('*', require('./404/notFounded'));//finished
