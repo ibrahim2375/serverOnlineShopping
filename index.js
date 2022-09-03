@@ -6,7 +6,6 @@ const session = require('express-session');
 
 require('dotenv').config();
 
-
 //server variables
 var port = process.env.PORT || 5000;
 var host = process.env.SERVER_HOST || 'localhost';
@@ -19,8 +18,10 @@ const router = require('./src/router/index');
 const connect_to_db = require('./config/DB');
 ///uses
 app.use(cors({
-    // origin: [process.env.ORIGIN_SITE],
-    // method: ['GET', 'POST'],
+    origin: [process.env.ORIGIN_SITE],
+    allowedHeaders: true,
+    optionsSuccessStatus: true,
+    method: ['GET', 'POST'],
     credentials: true, //to allow to cookies take session data
 }));
 app.use(session({
