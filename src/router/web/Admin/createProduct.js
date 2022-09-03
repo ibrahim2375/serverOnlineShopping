@@ -4,13 +4,24 @@ const router = express.Router();
 const multer = require('multer');
 const session = require('express-session');
 const productErrors = { message: '' };
+//s3 bucket upload files
+const { uploadFile } = require('../S3')
 //middlewares 
 const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
 // upload img
-process.chdir('../');
+// process.chdir('../');
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, `${process.cwd()}/online_shopping/public/assets/uploads`)
+//     },
+//     filename: function (req, file, cb) {
+//         const name = Date.now() + '-' + file.originalname;
+//         cb(null, name)
+//     }
+// })
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, `${process.cwd()}/online_shopping/public/assets/uploads`)
+        cb(null, `public/assets/uploads/`)
     },
     filename: function (req, file, cb) {
         const name = Date.now() + '-' + file.originalname;
@@ -31,8 +42,13 @@ router.post('/', upload.single('img'), async (req, res) => {
         res.redirect('/products/create');
     }
     else {
+        const bucket_result = await uploadFile(file);
         ///////////////success
-        const newProduct = new Product({ ...req.body, ownerId: req.session.admin._id, img: file.filename });
+        const newProduct = new Product({
+            ...req.body, ownerId: req.session.admin._id, img: file.filename,
+            avilableColors: (req.body.avilableColors).split('-'),
+            avilableSizes: (req.body.avilableSizes).split('-')
+        });
         await newProduct.save().then((result) => {
             if (!result) {
                 productErrors.message = 'something wrong';
