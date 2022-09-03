@@ -1,6 +1,7 @@
 <form class="border p-5 rounded" action="/product/update/<%= product._id %>"  method="post">
   <!-- 2 column grid layout with text inputs for the first and last names -->
     <h1 class="text-center"> update</h1>
+    <img src="/api/img/<%= product?.img %>" class="mb-5" alt="" width="200" height="200">
   <div class="col">
     <!-- name input -->
     <div class="form-outline-dark">
@@ -56,8 +57,6 @@
     <option value="new">New</option>
    </select>
   </div> -->
-
- 
    <!-- arrivalTime input -->
   <div class="form-outline-dark mb-4">
     <input type="text" id="form6Example4" class="form-control" name="arrivalTime" value="<%= product.arrivalTime %>" />
