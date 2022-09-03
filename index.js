@@ -19,7 +19,7 @@ const router = require('./src/router/index');
 const connect_to_db = require('./config/DB');
 ///uses
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: [process.env.ORIGIN_SITE],
     method: ['GET', 'POST'],
     credentials: true, //to allow to cookies take session data
 }));
