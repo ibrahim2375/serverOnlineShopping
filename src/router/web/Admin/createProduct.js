@@ -19,16 +19,22 @@ const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
 //         cb(null, name)
 //     }
 // })
+
+
+/////////////////////////////img/////////////////////////////
+
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, `public/assets/uploads/`)
-    },
+    // destination: function (req, file, cb) {
+    //     cb(null, `public/assets/uploads/`)
+    // },
     filename: function (req, file, cb) {
         const name = Date.now() + '-' + file.originalname;
         cb(null, name)
     }
 })
 const upload = multer({ storage: storage });
+/////////////////////////////img/////////////////////////////
+
 ///page
 router.get('/', authenticateAdmin, (req, res) => {
     res.render('Admin/createProduct/createProduct.ejs', { admin: req?.session?.admin, errors: productErrors });
@@ -42,25 +48,25 @@ router.post('/', upload.single('img'), async (req, res) => {
         res.redirect('/products/create');
     }
     else {
-        const bucket_result = await uploadFile(file);
-        ///////////////success
-        const newProduct = new Product({
-            ...req.body, ownerId: req.session.admin._id, img: file.filename,
-            avilableColors: (req.body.avilableColors).split('-'),
-            avilableSizes: (req.body.avilableSizes).split('-')
-        });
-        await newProduct.save().then((result) => {
-            if (!result) {
-                productErrors.message = 'something wrong';
-                res.redirect('/products/create');
-            }
-            res.status(200);
-            setTimeout(() => res.redirect('/products/admin/get'), 1000);
-        }).catch((err) => {
-            productErrors.message = err.message;
+    const bucket_result = await uploadFile(file);
+    // ///////////////success
+    const newProduct = new Product({
+        ...req.body, ownerId: req.session.admin._id, img: file.filename,
+        avilableColors: (req.body.avilableColors).split('-'),
+        avilableSizes: (req.body.avilableSizes).split('-')
+    });
+    await newProduct.save().then((result) => {
+        if (!result) {
+            productErrors.message = 'something wrong';
             res.redirect('/products/create');
-        });
-        //////////////success
+        }
+        res.status(200);
+        setTimeout(() => res.redirect('/products/admin/get'), 1000);
+    }).catch((err) => {
+        productErrors.message = err.message;
+        res.redirect('/products/create');
+    });
+    //////////////success
     }
 
 });
