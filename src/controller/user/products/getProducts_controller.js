@@ -20,43 +20,45 @@ const methods = {
                     }
                     res.status(200).send(result);
                 }).catch((err) => {
-                    next(createError(err.status, err.message));
+                    res.status(403).send(err);
                 });
             }
 
         } catch (error) {
-            next(createError(error.status, error.message));
+            nres.status(404).send(error.message);
         }
     },
     async getSampleOfProductsOfFeature(req, res, next) {
         try {
             //get my  Product
-            await Product.find({ type: 'feature' }).sort({ views: -1 }).limit(10).then((result) => {
+            await Product.find({ type: 'feature' }).limit(10).then((result) => {
                 if (!result) {
                     res.status(200).send('there is no orders');
                 }
                 res.status(200).send(result);
             }).catch((err) => {
-                next(createError(err.status, err.message));
+                res.status(403).send(err);
+
             });
         } catch (error) {
-            next(createError(error.status, error.message));
+            res.status(403).send(error);
         }
     }
     ,
     async getSampleOfProductsOfPopular(req, res, next) {
         try {
             //get my  Product
-            await Product.find({ type: 'popular' }).sort({ views: -1 }).limit(10).then((result) => {
+            await Product.find({ type: 'popular' }).limit(10).then((result) => {
                 if (!result) {
                     res.status(200).send('there is no orders');
                 }
                 res.status(200).send(result);
             }).catch((err) => {
-                next(createError(err.status, err.message));
+                res.status(403).send(err);
+
             });
         } catch (error) {
-            next(createError(error.status, error.message));
+            res.status(404).send(error);
         }
     }
 }

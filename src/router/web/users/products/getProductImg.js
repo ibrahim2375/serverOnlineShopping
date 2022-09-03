@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { getFileStream } = require('../../S3');
 router.get('/:key', (req, res) => {
-    const readStream = getFileStream(req.params.key);
+    let Key = req.params.key;
+    let readStream = getFileStream(Key);
     readStream.pipe(res);
-
 });
 module.exports = router;
