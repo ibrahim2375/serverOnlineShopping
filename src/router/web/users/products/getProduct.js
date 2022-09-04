@@ -9,7 +9,7 @@ router.get('/:id', async (req, res) => {
         }
         res.status(200).send(result);
     }).catch((err) => {
-        next(createError(err.status, err.message));
+        res.status(200).send(err.message);
     });
 });
 module.exports = router;

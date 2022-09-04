@@ -31,6 +31,7 @@ router.use('/api/users/get-order', require('./users/order/getOrder'));//finished
 router.use('/api/users/delete-order', require('./users/order/deleteOrder'));//finished
 
 
+router.use('/api/products/get/most-views', require('./users/products/MostViewed'));//finished
 router.use('/api/products/get/sample/feature', require('./users/products/getSampleProductsFeature'));//finished
 router.use('/api/products/get/sample/popular', require('./users/products/getSampleProductsPopular'));//finished
 router.use('/api/products/get', require('./users/products/getProducts'));//finished
@@ -38,7 +39,7 @@ router.use('/api/product/view', require('./users/products/addViewToProduct'));//
 router.use('/api/product/get', require('./users/products/getProduct'));//finished
 
 //read imgs from AWS_BUCKET
-router.use('/api/img', require('./users/products/getProductImg'));//finished
+// router.use('/api/img', require('./users/products/getProductImg'));//finished
 
 // payments method
 

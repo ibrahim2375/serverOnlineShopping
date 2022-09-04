@@ -12,9 +12,14 @@ router.get('/:id', authenticateAdmin, async (req, res, next) => {
     })
 })
 router.post('/:id', authenticateAdmin, async (req, res, next) => {
+    const { avilableColors, avilableSizes } = req.body;
     if (req.params.id) {
         await Product.findByIdAndUpdate(req.params.id, {
-            $set: { ...req.body }
+            $set: {
+                ...req.body,
+                avilableColors: avilableColors === '' ? [] : avilableColors.split('-'),
+                avilableSizes: avilableSizes === '' ? [] : avilableSizes.split('-')
+            }
         }).then((result) => {
             if (!result) {
                 res.redirect(`/product/update/${req.params.id}`)

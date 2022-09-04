@@ -19,8 +19,6 @@ const connect_to_db = require('./config/DB');
 ///uses
 app.use(cors({
     origin: [process.env.ORIGIN_SITE],
-    allowedHeaders: true,
-    optionsSuccessStatus: true,
     method: ['GET', 'POST'],
     credentials: true, //to allow to cookies take session data
 }));

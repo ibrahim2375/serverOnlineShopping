@@ -5,34 +5,35 @@ const multer = require('multer');
 const session = require('express-session');
 const productErrors = { message: '' };
 //s3 bucket upload files
-const { uploadFile } = require('../S3')
+// const { uploadFile } = require('../S3')
 //middlewares 
 const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
 // upload img
-// process.chdir('../');
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, `${process.cwd()}/online_shopping/public/assets/uploads`)
-//     },
-//     filename: function (req, file, cb) {
-//         const name = Date.now() + '-' + file.originalname;
-//         cb(null, name)
-//     }
-// })
-
-
-/////////////////////////////img/////////////////////////////
-
+process.chdir('../');
 const storage = multer.diskStorage({
-    // destination: function (req, file, cb) {
-    //     cb(null, `public/assets/uploads/`)
-    // },
+    destination: function (req, file, cb) {
+        cb(null, `${process.cwd()}/front-end/public/assets/uploads/`)
+    },
     filename: function (req, file, cb) {
-        const name = Date.now() + file.originalname;
+        const name = Date.now() + '-' + file.originalname;
         cb(null, name)
     }
 })
+
 const upload = multer({ storage: storage });
+
+/////////////////////////////img/////////////////////////////
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, `public/assets/uploads/`)
+//     },
+//     filename: function (req, file, cb) {
+//         const name = Date.now() + file.originalname;
+//         cb(null, name)
+//     }
+// })
+// const upload = multer({ storage: storage });
 /////////////////////////////img/////////////////////////////
 
 ///page
@@ -42,31 +43,31 @@ router.get('/', authenticateAdmin, (req, res) => {
 ////
 router.post('/', upload.single('img'), async (req, res) => {
     const file = req.file;
-    const { name, description, location, arrivalTime, price } = req.body
+    const { name, description, location, arrivalTime, price, avilableColors, avilableSizes } = req.body
     if (name === "" || !description === "" || location === "" || arrivalTime === "" || price === 0 || !req.file) {
         productErrors.message = 'can not be empty';
         res.redirect('/products/create');
     }
     else {
-    const bucket_result = await uploadFile(file);
-    // ///////////////success
-    const newProduct = new Product({
-        ...req.body, ownerId: req.session.admin._id, img: file.filename,
-        avilableColors: (req.body.avilableColors).split('-'),
-        avilableSizes: (req.body.avilableSizes).split('-')
-    });
-    await newProduct.save().then((result) => {
-        if (!result) {
-            productErrors.message = 'something wrong';
+        // const bucket_result = await uploadFile(file);
+        // ///////////////success
+        const newProduct = new Product({
+            ...req.body, ownerId: req.session.admin._id, img: file.filename,
+            avilableColors: avilableColors === '' ? [] : avilableColors.split('-'),
+            avilableSizes: avilableSizes === '' ? [] : avilableSizes.split('-'),
+        });
+        await newProduct.save().then((result) => {
+            if (!result) {
+                productErrors.message = 'something wrong';
+                res.redirect('/products/create');
+            }
+            res.status(200);
+            setTimeout(() => res.redirect('/products/admin/get'), 1000);
+        }).catch((err) => {
+            productErrors.message = err.message;
             res.redirect('/products/create');
-        }
-        res.status(200);
-        setTimeout(() => res.redirect('/products/admin/get'), 1000);
-    }).catch((err) => {
-        productErrors.message = err.message;
-        res.redirect('/products/create');
-    });
-    //////////////success
+        });
+        ////////////success
     }
 
 });

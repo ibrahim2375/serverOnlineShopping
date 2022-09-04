@@ -33,7 +33,7 @@ const methods = {
             //get my  Product
             await Product.find({ type: 'feature' }).limit(10).then((result) => {
                 if (!result) {
-                    res.status(200).send('there is no orders');
+                    res.status(200).send('there is no products');
                 }
                 res.status(200).send(result);
             }).catch((err) => {
@@ -50,7 +50,24 @@ const methods = {
             //get my  Product
             await Product.find({ type: 'popular' }).limit(10).then((result) => {
                 if (!result) {
-                    res.status(200).send('there is no orders');
+                    res.status(200).send('there is no products');
+                }
+                res.status(200).send(result);
+            }).catch((err) => {
+                res.status(403).send(err);
+
+            });
+        } catch (error) {
+            res.status(404).send(error);
+        }
+    }
+    ,
+    async mostViewed(req, res, next) {
+        try {
+            //get my  Product
+            await Product.find().sort({ views: -1 }).limit(4).then((result) => {
+                if (!result) {
+                    res.status(200).send('there is no products');
                 }
                 res.status(200).send(result);
             }).catch((err) => {
