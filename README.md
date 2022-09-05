@@ -1,4 +1,4 @@
-# serverOnlineShopping Back-End Project
+# Server E-Commerce Back-End Project
 ![I am GitHub Readme Generator's creator](public/home.png)
 # E-Commerce Server Back-End 
 ### Site https://online-shopping-manage.herokuapp.com/
