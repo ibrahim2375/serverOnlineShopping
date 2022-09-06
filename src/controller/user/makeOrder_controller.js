@@ -3,8 +3,8 @@ const createError = require('../../errors/errorHandle');
 const methods = {
     async makeOrder(req, res, next) {
         try {
-            const { orders } = req.body;
-             orders?.map(async (order) => {
+            const { orders, userId } = req.body;
+            orders?.map(async (order) => {
                 const newOrder = new Order({
                     productId: order._id,
                     size: order.size,
@@ -14,7 +14,7 @@ const methods = {
                     quantity: order.quantity,
                     img: order.img,
                     productId: order._id,
-                    userId: req.user.id
+                    userId: userId
                 });
                 await newOrder.save().then((result) => {
                     if (!result) {
