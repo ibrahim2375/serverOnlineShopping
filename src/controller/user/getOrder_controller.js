@@ -6,7 +6,7 @@ const methods = {
             //get my  orders
             await Order.find({ userId: req.user.id }).then((result) => {
                 if (!result) {
-                    res.status(200).send('there is no orders');
+                    res.status(403).send('there is no orders');
                 }
                 res.status(200).send(result);
             }).catch((err) => {
