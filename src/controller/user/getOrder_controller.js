@@ -4,7 +4,7 @@ const methods = {
     async getOrder(req, res, next) {
         try {
             //get my  orders
-            await Order.find({ userId: req.user.id }).then((result) => {
+            await Order.find({ userId: req.body.userId }).then((result) => {
                 if (!result) {
                     res.status(403).send('there is no orders');
                 }
