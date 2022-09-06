@@ -1,5 +1,5 @@
 const Order = require('../../../models/Order')
-const createError = require('../../errors/errorHandle');
+// const createError = require('../../errors/errorHandle');
 const methods = {
     async getOrder(req, res, next) {
         try {
@@ -10,11 +10,11 @@ const methods = {
                 }
                 res.status(200).send(result);
             }).catch((err) => {
-                next(createError(err.status, err.message));
+                res.status(403).send(err.message)
             });
 
         } catch (error) {
-            next(createError(error.status, error.message));
+            res.status(403).send(error.message)
         }
     }
 }
