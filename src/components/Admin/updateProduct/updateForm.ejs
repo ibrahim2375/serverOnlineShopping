@@ -1,6 +1,12 @@
 <form class="border p-5 rounded" action="/product/update/<%= product._id %>"  method="post">
   <!-- 2 column grid layout with text inputs for the first and last names -->
     <h1 class="text-center"> update</h1>
+    <!-- product img -->
+    <div class="my-5 d-flex justify-content-center w-100">
+      <img src="/assets/uploads/<%= product.img %>" width="200" height="200"alt="" style="object-fit: contain">
+    </div>
+    <!-- product img -->
+
   <div class="col">
     <!-- name input -->
     <div class="form-outline-dark">
