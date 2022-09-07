@@ -9,31 +9,31 @@ const productErrors = { message: '' };
 //middlewares 
 const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
 // upload img
-process.chdir('../');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, `${process.cwd()}/front-end/public/assets/uploads/`)
-    },
-    filename: function (req, file, cb) {
-        const name = Date.now() + '-' + file.originalname;
-        cb(null, name)
-    }
-})
-
-const upload = multer({ storage: storage });
-
-/////////////////////////////img/////////////////////////////
-
+// process.chdir('../');
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
-//         cb(null, `public/assets/uploads/`)
+//         cb(null, `${process.cwd()}/front-end/public/assets/uploads/`)
 //     },
 //     filename: function (req, file, cb) {
-//         const name = Date.now() + file.originalname;
+//         const name = Date.now() + '-' + file.originalname;
 //         cb(null, name)
 //     }
 // })
+
 // const upload = multer({ storage: storage });
+
+/////////////////////////////img/////////////////////////////
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, `public/assets/uploads/`)
+    },
+    filename: function (req, file, cb) {
+        const name = Date.now() + file.originalname;
+        cb(null, name)
+    }
+})
+const upload = multer({ storage: storage });
 /////////////////////////////img/////////////////////////////
 
 ///page
