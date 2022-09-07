@@ -1,0 +1,40 @@
+<form class="border p-5 rounded" action="/user/update/<%= user?._id %>"  method="post">
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+    <h4 class="text-center"> update <%= user?.email %></h4>
+  <span class="my-5 display-6 <%= user?.ban ? 'text-danger' : 'text-success' %>"><%= user?.ban ? 'Baned' : 'No Baned' %>  </span>                              
+  <div class="col">
+    <!-- name input -->
+    <div class="form-outline-dark">
+      <input type="text" id="form6Example2" class="form-control" name="name"  value="<%= user?.name %>" />
+      <label class="form-label" for="form6Example2">Name</label>
+    </div>
+  <!-- Email input -->
+  <div class="form-outline-dark mb-4">
+    <input type="email" id="form6Example3" class="form-control" name="email"  value="<%= user?.email %>"/>
+    <label class="form-label" for="form6Example3">Email</label>
+  </div>
+
+   <!-- address input -->
+  <div class="form-outline-dark mb-4">
+   <input type="text" id="form6Example4" class="form-control" name="address"  value="<%= user?.address %>"/>
+    <label class="form-label" for="form6Example4">Address</label>
+  </div>
+   
+  <!-- number input -->
+ <div class="form-outline-dark mb-4">
+   <input type="text" id="form6Example4" class="form-control" name="number"  value="<%= user?.number %>"/>
+    <label class="form-label" for="form6Example4">Number</label>
+  </div>
+    <!-- ban input -->
+   <!-- ban input -->
+    <div class="form-outline-dark mb-4">
+  <label for="ban">baned :</label>
+    <select id="ban" name="ban"  style="width: 40%; height:30px;">
+    <option  selected disabled>Ban OR  Not</option>
+    <option value="ban">Ban</option>
+    <option value="noban">No Ban</option>
+   </select>
+</div>
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4 text-light" style="background-color: #ff7e31">update</button>
+</form>

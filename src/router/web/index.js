@@ -7,14 +7,18 @@ router.use('/profile', require('./Admin/profile'));//finished
 router.use('/login', require('./Admin/auth/signIn'));//finished
 router.use('/logout', require('./Admin/auth/logout'));//finished
 router.use('/create', require('./Admin/auth/create'));//finished
-
+//products
 router.use('/products/create', require('./Admin/createProduct'));//finished
 router.use('/products/admin/get', require('./Admin/adminProducts'));//finished
 router.use('/product/update', require('./Admin/updateProduct'));//finished
 router.use('/product/delete', require('./Admin/deleteProduct'));//finished
-
-
 router.use('/products/get', require('./Admin/getProduct'));//finished
+
+//users
+router.use('/users/get', require('./Admin/users/getUsers'));//finished
+router.use('/user/delete', require('./Admin/users/deleteUser'));//finished
+router.use('/user/update', require('./Admin/users/updateUser'));//finished
+
 //////////////////////////////// Admin //////////////////////////////////
 
 
