@@ -27,18 +27,23 @@ const methods = {
                 if (!user) {
                     next(createError(403, 'this email not founded!'));
                 } else {
-                    bcrypt.compare(password, user.password).then(async (result) => {
-                        if (result) {
-                            ///succuss login
-                            const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY_USER);
-                            const { password, ...other } = user._doc;
-                            res.cookie("access_token_user", token).status(200).json(other);
-                        } else {
-                            next(createError(403, 'password incorrect!'));
-                        }
-                    }).catch((err) => {
-                        next(createError(403, err.message));
-                    })
+                    if (user.ban) {
+                        next(createError(403, 'Your Email Baned 😆'));
+                    } else {
+                        bcrypt.compare(password, user.password).then(async (result) => {
+                            if (result) {
+                                ///succuss login
+                                const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY_USER);
+                                const { password, ...other } = user._doc;
+                                res.cookie("access_token_user", token).status(200).json(other);
+                            } else {
+                                next(createError(403, 'password incorrect!'));
+                            }
+                        }).catch((err) => {
+                            next(createError(403, err.message));
+                        })
+                    }
+
                 }
             }).catch(err => {
                 next(createError(403, err.message));
@@ -47,7 +52,7 @@ const methods = {
         } catch (error) {
             next(error);
         }
-    }, 
+    },
     async logOut(req, res, next) {
         try {
             await res.clearCookie('access_token_user');
