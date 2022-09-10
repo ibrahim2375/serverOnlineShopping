@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-
-const purchaseSchema = new mongoose.Schema({
-    userId: {
+const salesSchema = new mongoose.Schema({
+    ProductName: {
         type: String,
         required: true,
     },
@@ -9,28 +8,24 @@ const purchaseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    size: {
-        type: String,
-    },
     quantity: {
         type: Number,
         required: true,
         default: 1,
     },
-    color: {
-        type: String,
-    },
     price: {
         type: Number,
         required: true,
     },
-    accept: {
+    productCategory: {
         type: Boolean,
         default: false,
     },
-    paidMethod:{
+    payMethod:{
         type: String,
     }   
 }, { timestamps: true });
 
-module.exports = mongoose.model('Purchase', purchaseSchema);
+module.exports = mongoose.model('Sales', salesSchema);
+
+

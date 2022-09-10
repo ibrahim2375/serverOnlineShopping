@@ -21,6 +21,7 @@ router.use('/users/get', require('./Admin/users/getUsers'));//finished
 router.use('/user/get', require('./Admin/users/getUser'));//finished
 router.use('/user/delete', require('./Admin/users/deleteUser'));//finished
 router.use('/user/update', require('./Admin/users/updateUser'));//finished
+
 //orders
 router.use('/orders/get', require('./Admin/getAllOrders'));//finished
 router.use('/order/accept', require('./Admin/acceptOrder'));//finished
@@ -53,6 +54,7 @@ router.use('/api/product/get', require('./users/products/getProduct'));//finishe
 // payments method
 
 router.use('/api/product/payment', require('./users/payments/payments'));//finished
+router.use('/api/products/add-sales', require('./users/addSales'));//finished
 
 //////////////////////////////// User //////////////////////////////////
 

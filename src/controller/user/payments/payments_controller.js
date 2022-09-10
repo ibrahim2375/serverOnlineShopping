@@ -1,4 +1,3 @@
-const Purchase = require('../../../../models/purchase');
 const Stripe = require('stripe')(process.env.S_K);
 // const { v4 } = require('uuid');
 const createError = require('../../../errors/errorHandle');

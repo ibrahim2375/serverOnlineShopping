@@ -4,9 +4,9 @@ const router = express.Router();
 const createError = require('../../../errors/errorHandle');
 //middlewares 
 const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
-router.get('/:id', async (req, res, next) => {
+router.post('/:id', async (req, res, next) => {
     await Order.findByIdAndUpdate(req.params.id, {
-        $set: { accept: true }
+        ...req.body
     }).then((result) => {
         if (!result) {
             next(createError(403, err.message));
