@@ -10,7 +10,7 @@ router.get('/:id', authenticateAdmin, async (req, res, next) => {
             if (!result) {
                 res.status(403).send('cant delete this user');
             } else {
-                res.redirect('/users/get');
+                res.status(200).send('deleted successfully');
             }
         }).catch((err) => {
             res.status(403).send(err.message);

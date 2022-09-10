@@ -7,7 +7,7 @@ const methods = {
         try {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(req.body.password, salt);
-            const newUser = new User({ ...req.body, password: hash });
+            const newUser = new User({ ...req.body, password: hash, ban: false });
             await newUser.save().then((success) => {
                 if (success)
                     res.status(200).json({ message: 'user saved successfully' });
@@ -28,7 +28,7 @@ const methods = {
                     next(createError(403, 'this email not founded!'));
                 } else {
                     if (user.ban) {
-                        next(createError(403, 'Your Email Baned 😆'));
+                        next(createError(403, 'Baned'));
                     } else {
                         bcrypt.compare(password, user.password).then(async (result) => {
                             if (result) {

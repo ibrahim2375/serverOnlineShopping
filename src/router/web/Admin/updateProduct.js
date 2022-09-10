@@ -1,36 +1,29 @@
 const Product = require('../../../../models/Product');
 const express = require('express');
 const router = express.Router();
+const createError = require('../../../errors/errorHandle');
 //middlewares 
 const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
 router.get('/:id', authenticateAdmin, async (req, res, next) => {
     await Product.findById(req.params.id).then((result) => {
-        res.render('Admin/updateProduct/updateProduct.ejs', { admin: req?.session?.admin, product: result });
     }).catch((err) => {
         console.log(err.message);
-        res.render('Admin/updateProduct/updateProduct.ejs', { admin: req?.session?.admin, product: [] });
     })
 })
 router.post('/:id', authenticateAdmin, async (req, res, next) => {
-    const { avilableColors, avilableSizes } = req.body;
-    if (req.params.id) {
         await Product.findByIdAndUpdate(req.params.id, {
             $set: {
-                ...req.body,
-                avilableColors: avilableColors === '' ? [] : avilableColors.split('-'),
-                avilableSizes: avilableSizes === '' ? [] : avilableSizes.split('-')
+                ...req.body
             }
         }).then((result) => {
             if (!result) {
-                res.redirect(`/product/update/${req.params.id}`)
+                res.status(200).send("somthing wrong");
             } else {
-                setTimeout(() => res.redirect(`/product/update/${req.params.id}`), 1000);
+                res.status(200).send('updated');
             }
         }).catch((err) => {
-            res.status(403).send(err.status, err.message);
+            next(createError(err.status, err.message));
         })
-    } else {
-        res.status(403).send("you cant update this product");
     }
-});
+);
 module.exports = router;

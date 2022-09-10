@@ -5,9 +5,10 @@ const methods = {
         try {
             await User.find().then(result => {
                 if (result) {
-                    res.render('Admin/usersData/usersData.ejs', { admin: req?.session?.admin, users: result });
+                    res.status(200).send(result);
+
                 } else {
-                    res.render('Admin/usersData/usersData.ejs', { admin: req?.session?.admin, users: [] });
+                    next(createError(403, err.message));
                 }
             }).catch((err) => {
                 next(createError(403, err.message));
@@ -24,16 +25,15 @@ const methods = {
                     { email: { $regex: '.*' + req.body.search + '.*' } },
                 ]
             }).then((result) => {
-                res.render('Admin/usersData/usersData.ejs', { admin: req?.session?.admin, users: result });
+
             }).catch((err) => {
                 console.log(err.message);
-                res.render('Admin/usersData/usersData.ejs', { admin: req?.session?.admin, users: [] });
             })
         } catch (error) {
             next(error);
         }
     }
-    
+
 }
 
 module.exports = { ...methods }

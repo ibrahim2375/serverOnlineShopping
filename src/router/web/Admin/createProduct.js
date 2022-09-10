@@ -1,26 +1,12 @@
 const Product = require('../../../../models/Product');
 const express = require('express');
+const createError = require('../../../errors/errorHandle')
 const router = express.Router();
 const multer = require('multer');
 const session = require('express-session');
 const productErrors = { message: '' };
 //s3 bucket upload files
 // const { uploadFile } = require('../S3')
-//middlewares 
-const authenticateAdmin = require('../../../../middlewares/authenticateAdmin');
-// upload img
-// process.chdir('../');
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, `${process.cwd()}/front-end/public/assets/uploads/`)
-//     },
-//     filename: function (req, file, cb) {
-//         const name = Date.now() + '-' + file.originalname;
-//         cb(null, name)
-//     }
-// })
-
-// const upload = multer({ storage: storage });
 
 /////////////////////////////img/////////////////////////////
 
@@ -36,36 +22,28 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 /////////////////////////////img/////////////////////////////
 
-///page
-router.get('/', authenticateAdmin, (req, res) => {
-    res.render('Admin/createProduct/createProduct.ejs', { admin: req?.session?.admin, errors: productErrors });
-});
-////
-router.post('/', upload.single('img'), async (req, res) => {
+router.post('/', upload.single('img'), async (req, res, next) => {
     const file = req.file;
-    const { name, description, location, arrivalTime, price, avilableColors, avilableSizes } = req.body
-    if (name === "" || !description === "" || location === "" || arrivalTime === "" || price === 0 || !req.file) {
-        productErrors.message = 'can not be empty';
-        res.redirect('/products/create');
+    const { avilableColors, avilableSizes } = req.body
+    console.log(avilableColors)
+    if (!file) {
+        next(createError(403, 'something wrong'));
     }
     else {
         // const bucket_result = await uploadFile(file);
         // ///////////////success
         const newProduct = new Product({
             ...req.body, ownerId: req.session.admin._id, img: file.filename,
-            avilableColors: avilableColors === '' ? [] : avilableColors.split('-'),
-            avilableSizes: avilableSizes === '' ? [] : avilableSizes.split('-'),
+            avilableColors: avilableColors === '' ? [] : avilableColors.split(','),
+            avilableSizes: avilableSizes === '' ? [] : avilableSizes.split(','),
         });
         await newProduct.save().then((result) => {
             if (!result) {
-                productErrors.message = 'something wrong';
-                res.redirect('/products/create');
+                next(createError(403, 'something wrong'));
             }
-            res.status(200);
-            setTimeout(() => res.redirect('/products/admin/get'), 1000);
+            res.status(200).send(result);
         }).catch((err) => {
-            productErrors.message = err.message;
-            res.redirect('/products/create');
+            next(createError(err.status, err.message));
         });
         ////////////success
     }

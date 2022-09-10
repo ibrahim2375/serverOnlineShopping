@@ -5,10 +5,12 @@ const methods = {
     async getAdminProducts(req, res, next) {
         try {
             await Products.find({ ownerId: req.session.admin._id }).then((result) => {
-                if (result)
-                    res.render('Admin/adminProducts/adminProducts.ejs', { admin: req?.session?.admin, products: result });
-                else
-                    res.render('Admin/adminProducts/adminProducts.ejs', { admin: req?.session?.admin, products: [] });
+                if (result) {
+                    res.status(200).json(result)
+                } else {
+                    next(createError(403, 'no products'));
+                }
+            
             })
 
         } catch (error) {

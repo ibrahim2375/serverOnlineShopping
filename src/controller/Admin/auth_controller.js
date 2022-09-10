@@ -21,7 +21,8 @@ const methods = {
                         await Admin.findOne({ email: email }).then(admin => {
                             if (!admin) {
                                 loginErrors.message = 'this email not founded!';
-                                res.redirect('/login');
+                                // res.redirect('/login');
+                                next(createError(403, 'this email not founded!'));
                             } else {
                                 bcrypt.compare(password, admin.password).then(async (result) => {
                                     if (result) {
@@ -29,19 +30,23 @@ const methods = {
                                         const { password, ...other } = admin._doc;
                                         req.session.admin = other;
                                         loginErrors.message = '';
-                                        res.redirect('/');
+                                        // res.redirect('/');
+                                        res.status(200).json(other);
                                     } else {
                                         loginErrors.message = 'password incorrect!';
-                                        res.redirect('/login');
+                                        // res.redirect('/login');
+                                        next(createError(403, 'password incorrect!'));
                                     }
                                 }).catch((err) => {
                                     loginErrors.message = err.message;
-                                    res.redirect('/login');
+                                    // res.redirect('/login');
+                                    next(createError(err.status, err.message));
                                 })
                             }
                         }).catch(err => {
                             loginErrors.message = err.message;
-                            res.redirect('/login');
+                            // res.redirect('/login');
+                            next(createError(err.status, err.message));
                         })
                     }
                 });

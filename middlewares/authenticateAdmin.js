@@ -5,10 +5,10 @@ const authenticateAdmin = (req, res, next) => {
         if (req.session.admin) {
             next();
         } else {
-            res.redirect('/');
+            next(createError(404, 'authenticatation faild'));
         }
     } catch (err) {
-        next(createError(err.status, err.message));
+        next(createError(404, err.message));
     }
 }
 module.exports = authenticateAdmin;

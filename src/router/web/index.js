@@ -1,4 +1,6 @@
 const router = require('express').Router()
+//middlewares 
+const authenticateAdmin = require('../../../middlewares/authenticateAdmin');
 
 //////////////////////////////// Admin //////////////////////////////////
 router.use('/', require('./Admin/home'));//finished
@@ -7,21 +9,22 @@ router.use('/profile', require('./Admin/profile'));//finished
 router.use('/login', require('./Admin/auth/signIn'));//finished
 router.use('/logout', require('./Admin/auth/logout'));//finished
 router.use('/create', require('./Admin/auth/create'));//finished
+router.use('/current-admin', require('./Admin/auth/currentAdmin'));//finished
 //products
-router.use('/products/create', require('./Admin/createProduct'));//finished
+router.use('/products/create', authenticateAdmin, require('./Admin/createProduct'));//finished
 router.use('/products/admin/get', require('./Admin/adminProducts'));//finished
 router.use('/product/update', require('./Admin/updateProduct'));//finished
 router.use('/product/delete', require('./Admin/deleteProduct'));//finished
-router.use('/products/get', require('./Admin/getProduct'));//finished
-
+router.use('/product/get', require('./Admin/getProduct'));//finished
 //users
 router.use('/users/get', require('./Admin/users/getUsers'));//finished
+router.use('/user/get', require('./Admin/users/getUser'));//finished
 router.use('/user/delete', require('./Admin/users/deleteUser'));//finished
 router.use('/user/update', require('./Admin/users/updateUser'));//finished
-
+//orders
+router.use('/orders/get', require('./Admin/getAllOrders'));//finished
+router.use('/order/accept', require('./Admin/acceptOrder'));//finished
 //////////////////////////////// Admin //////////////////////////////////
-
-
 
 
 //////////////////////////////// User //////////////////////////////////
@@ -59,47 +62,3 @@ module.exports = router
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //pages
-
-// ///user
-// router.use('/api/user/get', require('./users/getUser'));
-// router.use('/api/users/get', require('./users/getUsers'));
-// router.use('/api/users/update', require('./users/updateUser'));
-// router.use('/api/users/delete', require('./users/deleteUser'));
-// router.use('/api/users/add-to-favorites', require('./users/favorites/favorites'));
-
-// //finished
-
-
-
-// //products
-// router.use('/api/products/update', require('./products/updateProduct'));
-// router.use('/api/products/delete', require('./products/deleteProduct'));
-
-// finished

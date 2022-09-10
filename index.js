@@ -27,9 +27,9 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-        expires: 60000000
-    }
+    // cookie: {
+    //     expires: 60 * 60 * 24 * 100000
+    // }
 }));
 
 app.use(express.static(__dirname + '/public'));
