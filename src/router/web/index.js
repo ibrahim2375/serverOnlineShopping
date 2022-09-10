@@ -26,6 +26,7 @@ router.use('/user/update', require('./Admin/users/updateUser'));//finished
 router.use('/orders/get', require('./Admin/getAllOrders'));//finished
 router.use('/order/accept', require('./Admin/acceptOrder'));//finished
 router.use('/order/delete', require('./Admin/deleteOrder'));//finished
+router.use('/order/get', require('./Admin/getOrderDetails'));//finished
 
 //////////////////////////////// Admin //////////////////////////////////
 
