@@ -3,15 +3,14 @@ const createError = require('../../errors/errorHandle');
 const methods = {
     async addSales(req, res, next) {
         try {
-            const { orders, payMethod } = req.body;
-            orders?.map(async (order) => {
+            const { selectedOrders } = req.body;
+            selectedOrders?.map(async (order) => {
                 const newSale = new Sales({
-                    ProductName: order.name,
+                    productName: order.name,
                     price: order.price,
                     quantity: order.quantity,
                     productId: order._id,
-                    productCategory: order.category,
-                    payMethod: payMethod
+                    category: order.category,
                 });
                 await newSale.save().then((result) => {
                     if (!result) {
@@ -19,7 +18,7 @@ const methods = {
                     }
                     res.status(200).send('added succesfully....');
                 }).catch((err) => {
-                    res.status(403);
+                    res.status(403).send(err);
                 });
             })
 

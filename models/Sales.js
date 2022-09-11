@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const salesSchema = new mongoose.Schema({
-    ProductName: {
+    productName: {
         type: String,
         required: true,
     },
@@ -17,13 +17,10 @@ const salesSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    productCategory: {
-        type: Boolean,
-        default: false,
-    },
-    payMethod:{
+    category: {
         type: String,
-    }   
+        default: false,
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Sales', salesSchema);

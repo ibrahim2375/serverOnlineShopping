@@ -19,7 +19,7 @@ const connect_to_db = require('./config/DB');
 ///uses
 app.use(cors({
     origin: [process.env.ORIGIN_SITE, process.env.ADMIN_SITE],
-    method: ['GET', 'POST'],
+    // method: ['GET', 'POST'],
     credentials: true, //to allow to cookies take session data
 }));
 app.use(session({
@@ -27,9 +27,10 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    // cookie: {
-    //     expires: 60 * 60 * 24 * 100000
-    // }
+    cookie: {
+        sameSite: 'none',
+        secure: false,
+    }
 }));
 
 app.use(express.static(__dirname + '/public'));

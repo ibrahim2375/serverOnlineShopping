@@ -27,7 +27,8 @@ router.use('/orders/get', require('./Admin/getAllOrders'));//finished
 router.use('/order/accept', require('./Admin/acceptOrder'));//finished
 router.use('/order/delete', require('./Admin/deleteOrder'));//finished
 router.use('/order/get', require('./Admin/getOrderDetails'));//finished
-
+router.use('/orders/add-sales', require('./users/addSales'));//finished
+router.use('/orders/update', require('./Admin/updateOrder'));//finished
 //////////////////////////////// Admin //////////////////////////////////
 
 
@@ -55,7 +56,7 @@ router.use('/api/product/get', require('./users/products/getProduct'));//finishe
 // payments method
 
 router.use('/api/product/payment', require('./users/payments/payments'));//finished
-router.use('/api/products/add-sales', require('./users/addSales'));//finished
+
 
 //////////////////////////////// User //////////////////////////////////
 

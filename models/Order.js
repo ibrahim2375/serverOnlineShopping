@@ -26,11 +26,19 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    category: {
+        type: String,
+        required: true,
+    },
     img: {
         type: String,
         required: true,
     },
     accept: {
+        type: Boolean,
+        default: false,
+    },
+    add_to_sales: {
         type: Boolean,
         default: false,
     },

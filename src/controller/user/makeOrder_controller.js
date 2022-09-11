@@ -14,6 +14,7 @@ const methods = {
                     quantity: order.quantity,
                     img: order.img,
                     productId: order._id,
+                    category: order.category,
                     userId: userId
                 });
                 await newOrder.save().then((result) => {
